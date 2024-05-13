@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {postDocumentary, getDocumentaries} = require("../controllers/documentary.controller");
 
-router.post("/documentary", postDocumentary);
+router.post("/create/documentary", postDocumentary);
 router.get("/documentaries", getDocumentaries);
 
 
