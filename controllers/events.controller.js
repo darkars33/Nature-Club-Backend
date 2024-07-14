@@ -1,20 +1,28 @@
 const Event = require('../models/events.model');
+const cloudinary = require('cloudinary').v2;
 
 
 const postEvents = async (req, res) =>{
           try {
                     const {name, date, description, location} = req.body;
+                    const {eventPic} = req.body;
 
                     const existingEvent = await Event.findOne({name});
                     if(existingEvent){
                               return res.status(400).json({message: "Event already exists"});
                     };
 
+                    if(eventPic){
+                              const uploadResponse= await cloudinary.uploader.upload(eventPic);
+                              eventPic= uploadResponse.secure_url;
+                    }
+
                     const event = new Event({
                               name,
                               date,
                               description,
                               location,
+                              eventPic
                     });
 
                     if(event){
@@ -24,6 +32,7 @@ const postEvents = async (req, res) =>{
                                         date: event.date,
                                         description: event.description,
                                         location: event.location,
+                                        eventPic: event.eventPic
                               })
                     }
 

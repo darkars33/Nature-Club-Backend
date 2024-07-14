@@ -1,31 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const teamSchema = new mongoose.Schema({
-          name:{
+const UserSchema = new mongoose.Schema({
+          name: {
                     type: String,
                     required: true,
           },
-          position:{
+          username: {
                     type: String,
                     required: true,
           },
-          instagramLink:{
+          email: {
                     type: String,
                     required: true,
           },
-          linkedInLink:{
+          password: {
                     type: String,
                     required: true,
           },
-          profile:{
-                    type: String,
-                    required: false,
-          }
+          
 },
 {
           timestamps: true,
 }
 );
 
-const Team= mongoose.model('Team', teamSchema);
-module.exports = Team;
+const User = mongoose.model("User", UserSchema);
+
+module.exports = User;
