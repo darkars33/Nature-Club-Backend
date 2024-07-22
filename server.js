@@ -12,17 +12,17 @@ const authRoute = require("./routes/auth.route");
 
 const app = express();
 const PORT = 5000;
-app.use(express.json());
-app.use(express.urlencoded({ extends: true }));
-app.use(cookieParser());
-
-dotenv.config();
 app.use(
   cors({
     origin: "*",
     credentials: true,
   })
 );
+
+app.use(express.json());
+app.use(cookieParser());
+dotenv.config();
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,

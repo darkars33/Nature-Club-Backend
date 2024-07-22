@@ -1,14 +1,14 @@
 const Team = require('../models/teams.model');
 const cloudinary = require('cloudinary').v2;
 
-const postTeam = async (req, res) =>{
+const   postTeam = async (req, res) =>{
           try {
                   const {name, position, instagramLink, linkedInLink} = req.body;
                   const {profile} = req.body;
 
-                  if(!name || !position || !instagramLink || !linkedInLink){
-                            return res.status(400).json({message: "All fields are required"});
-                  }
+                  // if(!name || !position || !instagramLink || !linkedInLink){
+                  //           return res.status(400).json({message: "All fields are required"});
+                  // }
 
                   const exitingMember = await Team.findOne({name});
                   if(exitingMember){
